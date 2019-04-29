@@ -21,6 +21,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.lang.String.format;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_GPS = 1001;
 
     private TextView locationTextView;
-    private double latitudeAtual;
-    private double longitudeAtual;
+
+    Localizacao localizacao = new  Localizacao();
+
 
 
 
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         // intanciando a localizaçã pelo manager location
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        final List<Localizacao> listaLocal = new ArrayList<>();
 
 //        precisa atualizar a localização com o localização listener
 //        como se trata de uma interface precisa sobrepor os methodos
@@ -48,11 +54,14 @@ public class MainActivity extends AppCompatActivity {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
+                Localizacao novaLoca = new Localizacao();
                 double lat = location.getLatitude();
                 double lon = location.getLongitude();
-                longitudeAtual = lon;
-                latitudeAtual = lat;
+                novaLoca.setLatitude(lat);
+                novaLoca.setLongitude(lon);
                 locationTextView.setText (String.format("Lat: %f,Lon %f",lat,lon));
+               listaLocal.add(novaLoca);
+
             }
 
             @Override
@@ -83,9 +92,14 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                Uri gmmIntentUri = Uri.parse(String.format("geo:%f,%f?q=restaurantes",latitudeAtual,longitudeAtual));
-                Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                intent.setPackage("com.google.android.apps.maps");
+//                Uri gmmIntentUri = Uri.parse(String.format("geo:%f,%f?q=restaurantes",latitudeAtual,longitudeAtual));
+//                Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+//                intent.setPackage("com.google.android.apps.maps");
+//                startActivity(intent);
+
+                List<Localizacao> nomeFila = listaLocal;
+                Intent intent = new Intent(MainActivity.this,ListaLocaActivity.class);
+                intent.putExtra("LIST", (Serializable)nomeFila);
                 startActivity(intent);
             }
         });
