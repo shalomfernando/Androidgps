@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
     Localizacao localizacao = new  Localizacao();
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

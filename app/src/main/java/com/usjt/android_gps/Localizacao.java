@@ -33,9 +33,11 @@ public class Localizacao implements Serializable {
 
     @Override
     public String toString() {
-        return "Localizacao{" +
-                "latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
+        return "Localizacao" +
+                "\nLatitude=" + latitude ;
+    }
+
+    public String toString2(){
+        return ", Longitude=" + longitude;
     }
 }

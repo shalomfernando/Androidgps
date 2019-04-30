@@ -27,27 +27,23 @@ public class ListaLocaActivity extends AppCompatActivity {
         final List<Localizacao>
                 lista = (List<Localizacao>) origemIntent.getSerializableExtra("LIST");
 
-        ArrayAdapter<Localizacao> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, lista);
-        LocalListView.setAdapter(adapter);
+        ArrayAdapterLocal local =
+                new ArrayAdapterLocal(this,lista);
+        LocalListView.setAdapter(local);
 
         LocalListView.setOnItemClickListener(new
              AdapterView.OnItemClickListener() {
                  @Override
                  public void onItemClick(AdapterView<?> parent, View view, int
                          position, long id) {
-                     Uri gmmIntentUri = Uri.parse(String.format("geo:%f,%f?q=restaurantes", lista.get(position).getLatitude(), lista.get(position).getLongitude()));
+
+                     Localizacao localizacao = lista.get(position);
+                     Uri gmmIntentUri = Uri.parse(String.format("geo:%f,%f?q=restaurantes", localizacao.getLatitude(), localizacao.getLongitude()));
                      Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                      intent.setPackage("com.google.android.apps.maps");
                      startActivity(intent);
                  }
              });
     }
-//    public List<Localizacao> s50(List<Localizacao> localizacaos){
-//        List<Localizacao> aux
-//            if (localizacaos.size() > 50){
-//                while (aux.size() != 50 ){
-//
-//            }
-//        return localizacaos;
-//    }
+
 }
