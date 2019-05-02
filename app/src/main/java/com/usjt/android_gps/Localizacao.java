@@ -4,15 +4,26 @@ import java.io.Serializable;
 
 public class Localizacao implements Serializable {
 
+    private long id;
     private double latitude;
     private double longitude;
 
-    public Localizacao(double latitude, double longitude) {
+    public Localizacao(
+            long id, double latitude, double longitude) {
+        this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
     public Localizacao() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public double getLatitude() {

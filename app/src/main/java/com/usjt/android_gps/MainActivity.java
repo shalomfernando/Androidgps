@@ -15,6 +15,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,12 +54,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onLocationChanged(Location location) {
                 Localizacao novaLoca = new Localizacao();
+                int i = 1;
                 double lat = location.getLatitude();
                 double lon = location.getLongitude();
+                novaLoca.setId(i);
                 novaLoca.setLatitude(lat);
                 novaLoca.setLongitude(lon);
+                i++;
+
                 locationTextView.setText (String.format("Lat: %f,Lon %f",lat,lon));
                listaLocal.add(novaLoca);
+
+                if(listaLocal.size() > 50){
+                    Log.e("Size",">50");
+                    listaLocal.remove(0);
+                }
 
             }
 
