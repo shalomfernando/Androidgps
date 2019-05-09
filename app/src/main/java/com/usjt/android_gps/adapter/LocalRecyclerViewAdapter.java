@@ -1,10 +1,13 @@
-package com.usjt.android_gps;
+package com.usjt.android_gps.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.usjt.android_gps.R;
+import com.usjt.android_gps.model.Localizacao;
 
 import java.util.List;
 

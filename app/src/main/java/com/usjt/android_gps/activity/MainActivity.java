@@ -1,4 +1,4 @@
-package com.usjt.android_gps;
+package com.usjt.android_gps.activity;
 
 import android.Manifest;
 import android.content.Context;
@@ -7,11 +7,9 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +19,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.usjt.android_gps.R;
+import com.usjt.android_gps.model.Localizacao;
 
 import java.io.Serializable;
 import java.util.ArrayList;

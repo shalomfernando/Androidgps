@@ -1,4 +1,4 @@
-package com.usjt.android_gps;
+package com.usjt.android_gps.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.usjt.android_gps.R;
+import com.usjt.android_gps.model.Localizacao;
 
 import java.util.List;
 

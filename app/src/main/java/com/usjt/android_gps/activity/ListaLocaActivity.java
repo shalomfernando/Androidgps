@@ -1,14 +1,15 @@
-package com.usjt.android_gps;
+package com.usjt.android_gps.activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.usjt.android_gps.R;
+import com.usjt.android_gps.adapter.LocalRecyclerViewAdapter;
+import com.usjt.android_gps.model.Localizacao;
 
 import java.util.List;
 

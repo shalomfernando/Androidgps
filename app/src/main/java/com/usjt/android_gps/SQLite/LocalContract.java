@@ -1,15 +1,12 @@
-package com.usjt.android_gps;
+package com.usjt.android_gps.SQLite;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+
+import com.usjt.android_gps.model.Localizacao;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import static java.sql.Types.INTEGER;
 
 
 public class LocalContract {

@@ -1,4 +1,4 @@
-package com.usjt.android_gps;
+package com.usjt.android_gps.SQLite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

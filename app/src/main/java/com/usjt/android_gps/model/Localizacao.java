@@ -1,4 +1,4 @@
-package com.usjt.android_gps;
+package com.usjt.android_gps.model;
 
 import java.io.Serializable;
 

@@ -1,8 +1,10 @@
-package com.usjt.android_gps;
+package com.usjt.android_gps.SQLite;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.usjt.android_gps.model.Localizacao;
 
 import java.util.ArrayList;
 import java.util.List;
