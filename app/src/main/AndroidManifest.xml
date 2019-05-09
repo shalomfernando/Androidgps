@@ -3,8 +3,7 @@
     package="com.usjt.android_gps">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ListaLocaActivity"></activity>
+        <activity android:name=".Weather.ContentMain2"></activity>
+        <activity android:name=".activity.ListaLocaActivity" />
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"

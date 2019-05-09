@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.usjt.android_gps.R;
+import com.usjt.android_gps.Weather.ContentMain2;
 import com.usjt.android_gps.model.Localizacao;
 
 import java.io.Serializable;
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(intent);
 
                 List<Localizacao> nomeFila = listaLocal;
-                Intent intent = new Intent(MainActivity.this,ListaLocaActivity.class);
+                Intent intent = new Intent(MainActivity.this, ContentMain2.class);
                 intent.putExtra("LIST", (Serializable)nomeFila);
                 startActivity(intent);
             }
