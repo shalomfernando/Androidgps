@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.usjt.android_gps.R;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class WeatherAdapter extends RecyclerView.Adapter
     @Override
     public WeatherViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-        View raiz = inflater.inflate(R.layout.list_item, viewGroup, false);
+        View raiz = inflater.inflate(R.layout.list_item2, viewGroup, false);
         return new WeatherViewHolder (raiz);
 
     }
@@ -56,6 +57,7 @@ public class WeatherAdapter extends RecyclerView.Adapter
     @Override
     public void onBindViewHolder(@NonNull WeatherViewHolder weatherViewHolder, int i) {
         Weather dadoDeInteresse = previsoes.get(i);
+        Glide.with(context).load(dadoDeInteresse.iconURL).into(weatherViewHolder.conditionImageView);
         weatherViewHolder.
                 dayTextView.
                 setText(

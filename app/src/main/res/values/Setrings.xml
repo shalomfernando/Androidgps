@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string name="api_key">135b6c04b5d6596dab171adffe7f476b</string>
+    <string name="api_key">f432b6dcb57f6dc715ece788887b204f</string>
     <string name="web_service_url">http://api.openweathermap.org/data/2.5/forecast?q=%s&amp;APPID=%s&amp;units=metric</string>
     <string name="web_service_url2">http://api.openweathermap.org/data/2.5/weather?lat=%s&amp;lon=%s&amp;APPID=%s&amp;units=metric&amp;lang=pt</string>
     <string name="weather_condition_image">Graphical representation of weather conditions</string>
@@ -12,4 +12,5 @@
     <string name="hint_text">Type city name</string>
     <string name="read_error">Could not read data</string>
     <string name="connect_error">Could not connect to server</string>
+    <string name="invalid_url">Invalid URL</string>
 </resources>

@@ -2,11 +2,12 @@ package com.usjt.android_gps.Weather;
 
 import android.icu.text.NumberFormat;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-public class Weather {
+public class Weather implements Serializable {
 
     public final String dayOfWeek;
     public final String minTemp;
