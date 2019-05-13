@@ -23,7 +23,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.usjt.android_gps.R;
 import com.usjt.android_gps.Weather.ContentMain2;
@@ -31,6 +33,7 @@ import com.usjt.android_gps.Weather.Weather;
 import com.usjt.android_gps.Weather.WeatherAdapter;
 import com.usjt.android_gps.model.Localizacao;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
 
 
+
     private TextView locationTextView;
 
     Localizacao localizacao = new Localizacao();
@@ -70,11 +74,17 @@ public class MainActivity extends AppCompatActivity {
 //         Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
-        requestQueue = Volley.newRequestQueue(this);
 
         // intanciando a localizaçã pelo manager location
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         final List<Localizacao> listaLocal = new ArrayList<>();
+
+
+        weatherRecyclerView =
+                findViewById(R.id.weatherRecyclerView);
+        previsoes = new ArrayList<>();
+        previsoes.add(new Weather(500, 37, 38, 0.7, "teste 1", ""));
+        adapter = new WeatherAdapter(previsoes, this);
 
 
 //        precisa atualizar a localização com o localização listener
@@ -91,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 novaLoca.setLatitude(lat);
                 novaLoca.setLongitude(lon);
                 i++;
+               obtemPrevisoesV3(lat,lon);
 
                 locationTextView.setText(String.format("Lat: %f,Lon %f", lat, lon));
                 listaLocal.add(novaLoca);
@@ -120,15 +131,10 @@ public class MainActivity extends AppCompatActivity {
 
         };
 
-        // Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+         Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        requestQueue = Volley.newRequestQueue(this);
 
-
-        weatherRecyclerView =
-                findViewById(R.id.weatherRecyclerView);
-        previsoes = new ArrayList<>();
-        previsoes.add(new Weather(500, 37, 38, 0.7, "teste 1", ""));
-        //adapter = new WeatherAdapter(previsoes, this);
 
         // Camadno a  text view, tem q ser depois do setContextView
         locationTextView = findViewById(R.id.locationTextView);
@@ -141,15 +147,9 @@ public class MainActivity extends AppCompatActivity {
 //                Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
 //                intent.setPackage("com.google.android.apps.maps");
 //                startActivity(intent);
-                //obtemPrevisoesV3(-23.5506507, -46.6333824);
                 List<Localizacao> nomeFila = listaLocal;
-                for (Localizacao localizacao : nomeFila){
-                    double lat = localizacao.getLatitude();
-                    double lon = localizacao.getLongitude();
-                    //obtemPrevisoesV3(-23.5506507,-46.6333824);
-                     obtemPrevisoesV3(lat,lon);
-                }
                 // Intent intent = new Intent(MainActivity.this, ContentMain2.class);
+
 
                 Intent intent2 = new Intent(MainActivity.this, ContentMain2.class);
                 intent2.putExtra("LIST", (Serializable) previsoes);
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void lidaComJSON(String resultado) {
-        previsoes.clear();
+        //previsoes.clear();
         try {
             JSONObject obj = new JSONObject(resultado);
             JSONObject main = obj.getJSONObject("main");
@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                     main.getDouble("temp_max"), main.getDouble("humidity"),
                     weather.getString("description"), weather.getString("icon")));
             adapter.notifyDataSetChanged();
-            dismissKeyboard(weatherRecyclerView);
+            //dismissKeyboard(weatherRecyclerView);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -266,32 +266,7 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
-    public void obtemPrevisoesV31(double lat, double lon) {
-        //veja uma expressão lambda implementando a interface Runnable...
-        try {
-            @SuppressLint("StringFormatMatches") String endereco = getString(
-                    R.string.web_service_url2,
-                    lat,
-                    lon,
-                    getString(R.string.api_key)
-            );
-            URL url = new URL(endereco);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            InputStream is = conn.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            StringBuilder resultado = new StringBuilder("");
-            String aux = null;
-            while ((aux = reader.readLine()) != null)
-                resultado.append(aux);
-            runOnUiThread(() -> {
-                Toast.makeText(this, resultado.toString(),
-                        Toast.LENGTH_SHORT).show();
-                lidaComJSON(resultado.toString());
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     private void dismissKeyboard(View view) {
         InputMethodManager imm = (InputMethodManager)

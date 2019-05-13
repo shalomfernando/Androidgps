@@ -4,6 +4,7 @@
     <string name="api_key">f432b6dcb57f6dc715ece788887b204f</string>
     <string name="web_service_url">http://api.openweathermap.org/data/2.5/forecast?q=%s&amp;APPID=%s&amp;units=metric</string>
     <string name="web_service_url2">http://api.openweathermap.org/data/2.5/weather?lat=%s&amp;lon=%s&amp;APPID=%s&amp;units=metric&amp;lang=pt</string>
+    <string name="web_service_url3">http://api.openweathermap.org/data/2.5/forecast?lat=%s&amp;lon=%s&amp;APPID=%s&amp;units=metric&amp;lang=pt</string>
     <string name="weather_condition_image">Graphical representation of weather conditions</string>
     <string name="high_temp">Max: %s</string>
     <string name="low_temp">Min: %s</string>
